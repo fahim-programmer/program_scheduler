@@ -1,14 +1,15 @@
 import schedule
 import time
+from datetime import datetime
 import os
 import threading
+from random import randint
+from colorama import Back, Fore, Style
 
 thread_container = []
 
-
 def nothread(target_process):
-    print("Starting Job")
-    print(f"{target_process} :: Selected Process")
+    print(Fore.WHITE + Back.GREEN + Style.BRIGHT + f"Running Job ==> {target_process} :: Process on {datetime.now()} :: Scheduler Running from {startedTime}")
     os.system(f"{target_process}")
 
 
@@ -31,6 +32,8 @@ def job_loader(commands_text):
 
 
 def main(command_file_):
+    global startedTime
+    startedTime = datetime.now()
     with open(command_file_, "r") as command_file:
         clean_commands = []
         commands = command_file.readlines()
@@ -46,9 +49,9 @@ def main(command_file_):
         for each_clean_command in clean_commands:
             try:
                 exec(f"{each_clean_command}")
-                print(f"|Scheduled| JN:: {count + 1} :: {each_clean_command}")
+                print(Fore.WHITE + Back.YELLOW + Style.BRIGHT + f"|Scheduled| JN:: {count + 1} :: {each_clean_command}")
             except Exception as e:
-                print(f"Failed to execute the schedule script; JN::{count + 1}")
+                print(Fore.WHITE + Back.RED + Style.BRIGHT + f"Failed to execute the schedule script; JN::{count + 1}")
             count += 1
         while True:
             if count != 0:
@@ -58,19 +61,26 @@ def main(command_file_):
                 print("Nothing to do")
                 break
     except KeyboardInterrupt:
-        print("Terminating, Termination Signal Received")
+        print(Fore.WHITE + Back.MAGENTA + Style.BRIGHT + "Terminating, Termination Signal Received")
         for process in thread_container:
             process.join()
 
 
 if __name__ == "__main__":
+    import colorama
+    from colorama import Back, Fore, Style
+    colorama.init(autoreset = True)
     setting_path = os.path.exists('settings.ini')
+    os.system('cls')
+    os.system('title Program Scheduler')
+    print(Fore.WHITE + Back.CYAN + Style.BRIGHT + " ========================================== ")
+    print(Fore.WHITE + Back.CYAN + Style.BRIGHT + " | Program Scheduler v1.1.0 Release 1.1.0 | ")
+    print(Fore.WHITE + Back.CYAN + Style.BRIGHT + " ========================================== ")
     if setting_path is True:
         with open('settings.ini', 'r') as file:
             command_file_name = file.readlines()
-            # print(command_file_name[0])
         command_path = os.path.exists(command_file_name[0])
         if command_path is True:
             main(command_file_name[0])
     else:
-        print("Error: settings.ini must exist with the name of .txt file containing commands to run")
+        print(Fore.WHITE + Back.RED + Style.BRIGHT + "Error: settings.ini must exist with the name of .txt file containing commands to run")

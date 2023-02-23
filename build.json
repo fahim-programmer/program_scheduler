@@ -7,11 +7,11 @@
   },
   {
    "optionDest": "filenames",
-   "value": "C:/PycharmProjects/Process Manager/scheduler.py"
+   "value": "F:/GitHub/program_scheduler/scheduler.py"
   },
   {
    "optionDest": "onefile",
-   "value": true
+   "value": false
   },
   {
    "optionDest": "console",
@@ -19,7 +19,11 @@
   },
   {
    "optionDest": "icon_file",
-   "value": "C:/PycharmProjects/Process Manager/app_icon.ico"
+   "value": "F:/GitHub/program_scheduler/artwork/app_icon.ico"
+  },
+  {
+   "optionDest": "name",
+   "value": "Program Scheduler v1.1.0 Release 1.1.0"
   },
   {
    "optionDest": "ascii",

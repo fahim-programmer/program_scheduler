@@ -1,8 +1,5 @@
-schedule.every(10).seconds.do(nothread, 'start subprocess\krita')
+schedule.every(randint(5, 10)).seconds.do(thread, 'start notepad')
 #schedule.every(10).seconds.do(nothread, 'start subprocess\krita')
-
-
-
 
 # Example Commands
 #schedule.every(10).minutes.do(job)

@@ -1,1 +1,0 @@
-""" Pythonic windows shell extension """
